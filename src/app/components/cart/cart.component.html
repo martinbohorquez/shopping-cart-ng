@@ -1,0 +1,33 @@
+<div class="delinear">
+    <h3 class="delinear">Carro de Compras</h3>
+</div>
+
+<table class="table table-striped table-hover align-middle table-responsive small my-4">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cant.</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (item of items; track $index) {
+        <tr>
+            <td> {{item.product.name}} </td>
+            <td> {{priceFormat(item.product.price)}} </td>
+            <td> {{item.quantity}} </td>
+            <td> {{priceFormat(item.product.price * item.quantity)}} </td>
+            <td><button class="btn btn-danger btn-sm" (click)="onDeleteCart(item.product.id)"><i
+                        class="bi bi-trash-fill"></i></button></td>
+        </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr class="fw-bold">
+            <td class="text-end" colspan="3">Total:</td>
+            <td class="text-start" colspan="2"> {{priceFormat(total)}} </td>
+        </tr>
+    </tfoot>
+</table>

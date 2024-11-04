@@ -1,0 +1,15 @@
+<div class="card d-flex flex-column">
+    <img src={{product.imageUrl}} class="card-img-top flex-grow-1 bg-gradient" alt=" {{product.name}}">
+    <div class="card-header text-center"
+        style="flex-direction: column; display: flex; justify-content: center; height: 75px;">
+        <h5 class="card-title fw-bold"> {{product.name}} </h5>
+    </div>
+    <div class="card-body" style="flex-direction: column; display: flex; justify-content: center; height: 90px;">
+        <p class="card-text">{{product.description}} </p>
+    </div>
+    <div class="card-footer fw-bold" style="flex-direction: column;">
+        <button class="btn btn-primary btn-sm float-start" (click)="onAddCart(product)"> Comprar <i
+                class="bi bi-cart4"></i></button>
+        <p class="card-text small float-end my-1"> {{priceFormat(product.price)}} </p>
+    </div>
+</div>

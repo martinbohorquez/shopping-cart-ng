@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+/* delinear */
+.delinear {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.delinear h2,
+.delinear h3 {
+	border: 2px solid gray; /* Tipo de borde, grosor y color */
+	padding: 10px 20px; /* Espacio interno */
+	margin: 25px; /* Espacio externo */
+	border-radius: 5px;
+	text-align: center;
+	font-weight: bolder;
+	width: auto;
+}
