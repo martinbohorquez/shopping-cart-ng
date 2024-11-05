@@ -3,14 +3,14 @@ import { CartItem } from '../models/cartItem';
 import { Product } from '../models/product';
 import { CartItemService } from '../services/cart-item.service';
 import { ProductService } from '../services/product.service';
-import { CartComponent } from './cart/cart.component';
+import { CartModalComponent } from './cart-modal/cart-modal.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @Component({
 	selector: 'cart-app',
 	standalone: true,
-	imports: [CatalogComponent, CartComponent, NavbarComponent],
+	imports: [CatalogComponent, CartModalComponent, NavbarComponent],
 	templateUrl: './cart-app.component.html',
 	styleUrl: './cart-app.component.css'
 })
