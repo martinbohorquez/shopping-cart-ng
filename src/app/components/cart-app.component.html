@@ -5,7 +5,7 @@
     </div>
     <catalog [products]="products" [showCart]="showCart" (productEventEmitter)="onAddCart($event)" />
     @if (showCart) {
-    <cart-modal [items]="items" [total]="total" (closeCartEventEmitter)="openCloseCart()"
+    <cart-modal [items]="items" (closeCartEventEmitter)="openCloseCart()"
         (idProductEventEmitter)="onDeleteCart($event)" />
     }
 </div>
