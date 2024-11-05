@@ -12,7 +12,7 @@
             <button class="btn btn-secondary btn-sm fw-bold float-end" (click)="openCloseCart()">
                 <i class="bi bi-x-lg"></i></button>
             @if (items.length > 0) {
-            <cart [items]=" items" [total]="total" (idProductEventEmitter)="onDeleteCart($event)" />
+            <cart [items]=" items" (idProductEventEmitter)="onDeleteCart($event)" />
             } @else {
             <div class="alert alert-warning">No hay elementos en el carro!</div>
             }
