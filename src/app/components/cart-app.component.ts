@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
+import Swal from 'sweetalert2';
 import { CartItem } from '../models/cartItem';
 import { CartItemService } from '../services/cart-item.service';
 import { SharingDataService } from '../services/sharing-data.service';
@@ -38,22 +39,46 @@ export class CartAppComponent implements OnInit {
 			this.router.navigate(['/cart'], {
 				state: { items: this.items, total: this.total }
 			});
+			Swal.fire({
+				title: 'Agregado!',
+				html: 'Se ha <b><u>agregado</u></b> el item: <strong>' + product.name + '</strong>',
+				icon: 'success'
+			});
 		});
 	}
 
 	onDeleteCart(): void {
 		this.sharingDataService.idProductEventEmitter.subscribe((id) => {
-			this.items = this.cartItemService.removeProduct(this.items, id);
-			if (this.items.length == 0) {
-				sessionStorage.removeItem('cart');
-			}
-			this.calculateTotal();
-			this.saveSession();
+			const productName = this.cartItemService.findProduct(this.items, id).name;
+			Swal.fire({
+				title: 'Está seguro que desea eliminar ' + productName + '?',
+				html: 'Cuidado el item se <b><u>eliminará</u></b> del carro de compras!',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Sí, eliminar!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					this.items = this.cartItemService.removeProduct(this.items, id);
+					if (this.items.length == 0) {
+						sessionStorage.removeItem('cart');
+					}
+					this.calculateTotal();
+					this.saveSession();
 
-			this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-				this.router.navigate(['/cart'], {
-					state: { items: this.items, total: this.total }
-				});
+					this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+						this.router.navigate(['/cart'], {
+							state: { items: this.items, total: this.total }
+						});
+					});
+
+					Swal.fire({
+						title: 'Eliminado!',
+						html: 'Se ha <b><u>eliminado</u></b> el item: <strong>' + productName + '</strong>',
+						icon: 'success'
+					});
+				}
 			});
 		});
 	}

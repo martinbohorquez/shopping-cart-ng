@@ -25,4 +25,8 @@ export class CartItemService {
 	removeProduct(items: CartItem[], id: number): CartItem[] {
 		return items.filter((item) => item.product.id != id);
 	}
+
+	findProduct(items: CartItem[], id: number): Product {
+		return items.find((item) => item.product.id == id)!.product;
+	}
 }
