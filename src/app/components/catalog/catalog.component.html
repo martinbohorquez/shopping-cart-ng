@@ -1,5 +1,8 @@
+<div class="delinear">
+    <h2 class="delinear">Catálogo de Productos App</h2>
+</div>
 <div class="row">
     @for (product of products; track $index) {
-    <div product-card [product]="product" class="col-2 my-3" (productEventEmitter)="onAddCart($event)"></div>
+    <div product-card [product]="product" class="col-2 my-3"></div>
     }
 </div>

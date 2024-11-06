@@ -8,13 +8,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" [routerLink]="['/catalog']"
+                        [state]="{products: products}">Catalog</a>
                 </li>
             </ul>
             <ul class="navbar-nav me-2">
                 <li class="nav-item">
-                    <button class="btn btn-secondary" (click)="openCloseCart()" role="button"><i
-                            class="bi bi-cart4"></i>
+                    <button [routerLink]="['/cart']" [state]="{items: items, total: total}" class="btn btn-secondary"
+                        role="button"><i class="bi bi-cart4"></i>
                         ( {{items.length}} || {{getTotal()}})
                     </button>
                 </li>

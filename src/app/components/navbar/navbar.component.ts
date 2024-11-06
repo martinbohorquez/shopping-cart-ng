@@ -1,19 +1,21 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CartItem } from '../../models/cartItem';
+import { Product } from '../../models/product';
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
 	selector: 'navbar',
 	standalone: true,
-	imports: [],
+	imports: [RouterModule],
 	templateUrl: './navbar.component.html',
 	styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit {
 	modeIcon!: string;
 	@Input() items: CartItem[] = [];
-
-	@Output() openCloseCartEventEmitter: EventEmitter<void> = new EventEmitter();
+	@Input() total: number = 0;
+	@Input() products: Product[] = [];
 
 	constructor(private themeService: ThemeService) {}
 
@@ -25,10 +27,6 @@ export class NavbarComponent implements OnInit {
 
 	getTotal(): number {
 		return this.items.reduce((acumulator, item) => acumulator + item.quantity, 0);
-	}
-
-	openCloseCart(): void {
-		this.openCloseCartEventEmitter.emit();
 	}
 
 	changeMode(): void {
