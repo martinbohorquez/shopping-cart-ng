@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
-import { SharingDataService } from '../../services/sharing-data.service';
+import { ProductService } from '../../services/product.service';
 import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({
@@ -11,10 +10,12 @@ import { ProductCardComponent } from '../product-card/product-card.component';
 	templateUrl: './catalog.component.html',
 	styleUrl: './catalog.component.css'
 })
-export class CatalogComponent {
+export class CatalogComponent implements OnInit {
 	products!: Product[];
 
-	constructor(private sharingDataService: SharingDataService, private router: Router) {
-		this.products = this.router.getCurrentNavigation()?.extras.state!['products'];
+	constructor(private productService: ProductService) {}
+
+	ngOnInit(): void {
+		this.products = this.productService.findAll();
 	}
 }

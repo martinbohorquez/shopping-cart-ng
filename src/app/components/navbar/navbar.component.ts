@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CartItem } from '../../models/cartItem';
-import { Product } from '../../models/product';
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
@@ -15,7 +14,6 @@ export class NavbarComponent implements OnInit {
 	modeIcon!: string;
 	@Input() items: CartItem[] = [];
 	@Input() total: number = 0;
-	@Input() products: Product[] = [];
 
 	constructor(private themeService: ThemeService) {}
 
