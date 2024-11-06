@@ -1,9 +1,10 @@
 <div class="card">
     <div class="card-content">
-        <div class="card-header d-flex align-items-center delinear">
+        <div class="card-header delinear">
             <h4 class="modal-title">Carro de Compras</h4>
         </div>
         <div class="card-body">
+            @if (items.length > 0) {
             <table class="table table-striped table-hover align-middle table-responsive small">
                 <thead>
                     <tr class="text-center">
@@ -38,6 +39,9 @@
                     </tr>
                 </tfoot>
             </table>
+            } @else {
+            <div class="alert alert-warning">No hay elementos en el carro!</div>
+            }
         </div>
     </div>
 </div>

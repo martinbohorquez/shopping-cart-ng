@@ -7,11 +7,10 @@
 }
 
 .delinear h2,
-.delinear h3,
-.delinear h4 {
+.delinear h3 {
 	border: 2px solid gray; /* Tipo de borde, grosor y color */
 	padding: 10px 20px; /* Espacio interno */
-	margin: 15px; /* Espacio externo */
+	margin: 10px; /* Espacio externo */
 	border-radius: 5px;
 	text-align: center;
 	font-weight: bolder;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { CartItem } from '../models/cartItem';
 import { Product } from '../models/product';
 import { CartItemService } from '../services/cart-item.service';
@@ -21,6 +21,7 @@ export class CartAppComponent implements OnInit {
 	total: number = 0;
 
 	constructor(
+		private router: Router,
 		private sharingDataService: SharingDataService,
 		private productService: ProductService,
 		private cartItemService: CartItemService
@@ -39,6 +40,9 @@ export class CartAppComponent implements OnInit {
 			this.items = this.cartItemService.addProduct(this.items, product);
 			this.calculateTotal();
 			this.saveSession();
+			this.router.navigate(['/cart'], {
+				state: { items: this.items, total: this.total }
+			});
 		});
 	}
 
@@ -50,6 +54,12 @@ export class CartAppComponent implements OnInit {
 			}
 			this.calculateTotal();
 			this.saveSession();
+
+			this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+				this.router.navigate(['/cart'], {
+					state: { items: this.items, total: this.total }
+				});
+			});
 		});
 	}
 
