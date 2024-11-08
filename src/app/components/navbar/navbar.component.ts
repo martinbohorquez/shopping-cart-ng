@@ -13,7 +13,6 @@ import { ThemeService } from '../../services/theme.service';
 export class NavbarComponent implements OnInit {
 	modeIcon!: string;
 	@Input() items: CartItem[] = [];
-	@Input() total: number = 0;
 
 	constructor(private themeService: ThemeService) {}
 

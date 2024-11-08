@@ -9,9 +9,9 @@ export class CartItemService {
 	constructor() {}
 
 	addProduct(items: CartItem[], product: Product): CartItem[] {
-		const hasItem = items.find((item) => item.product.id === product.id);
+		const hasItem = items.find((item: CartItem) => item.product.id === product.id);
 		if (hasItem) {
-			return items.map((item) => {
+			return items.map((item: CartItem) => {
 				if (item.product.id === product.id) {
 					return { ...item, quantity: item.quantity + 1 };
 				}

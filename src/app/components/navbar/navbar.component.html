@@ -13,8 +13,7 @@
             </ul>
             <ul class="navbar-nav me-2">
                 <li class="nav-item">
-                    <button [routerLink]="['/cart']" [state]="{items: items, total: total}" class="btn btn-secondary"
-                        role="button"><i class="bi bi-cart4"></i>
+                    <button [routerLink]="['/cart']" class="btn btn-secondary" role="button"><i class="bi bi-cart4"></i>
                         ( {{items.length}} || {{getTotal()}})
                     </button>
                 </li>
