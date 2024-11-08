@@ -4,13 +4,12 @@ import Swal from 'sweetalert2';
 import { CartItem } from '../models/cartItem';
 import { CartItemService } from '../services/cart-item.service';
 import { SharingDataService } from '../services/sharing-data.service';
-import { CatalogComponent } from './catalog/catalog.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @Component({
 	selector: 'cart-app',
 	standalone: true,
-	imports: [CatalogComponent, NavbarComponent, RouterOutlet],
+	imports: [NavbarComponent, RouterOutlet],
 	templateUrl: './cart-app.component.html',
 	styleUrl: './cart-app.component.css'
 })
@@ -26,7 +25,6 @@ export class CartAppComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.items = JSON.parse(sessionStorage.getItem('cart') || '[]');
-		this.calculateTotal();
 		this.onAddCart(); //El método realiza una suscripción
 		this.onDeleteCart(); //El método realiza una suscripción
 	}
@@ -61,9 +59,6 @@ export class CartAppComponent implements OnInit {
 			}).then((result) => {
 				if (result.isConfirmed) {
 					this.items = this.cartItemService.removeProduct(this.items, id);
-					if (this.items.length == 0) {
-						sessionStorage.removeItem('cart');
-					}
 					this.calculateTotal();
 					this.saveSession();
 
