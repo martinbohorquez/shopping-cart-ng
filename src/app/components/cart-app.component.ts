@@ -5,9 +5,9 @@ import Swal from 'sweetalert2';
 import { CartItem } from '../models/cartItem';
 import { CartItemService } from '../services/cart-item.service';
 import { SharingDataService } from '../services/sharing-data.service';
+import { add, remove } from '../store/items.action';
+import { ItemsState } from '../store/items.reducer';
 import { NavbarComponent } from './navbar/navbar.component';
-import { add, remove } from './store/items.action';
-import { ItemsState } from './store/items.reducer';
 
 @Component({
 	selector: 'cart-app',

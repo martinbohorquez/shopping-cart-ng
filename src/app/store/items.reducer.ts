@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { CartItem } from '../../models/cartItem';
-import { CartItemService } from './../../services/cart-item.service';
+import { CartItem } from '../models/cartItem';
+import { CartItemService } from '../services/cart-item.service';
 import { add, remove, total } from './items.action';
 
 export interface ItemsState {
@@ -37,12 +37,10 @@ export const itemsReducer = createReducer(
 		};
 	}),
 
-	on(total, (state) => {
-		return {
-			...state,
-			total: calculateTotal(state.items)
-		};
-	})
+	on(total, (state) => ({
+		...state,
+		total: calculateTotal(state.items)
+	}))
 );
 
 function calculateTotal(items: CartItem[]): number {

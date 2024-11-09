@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { CartItem } from '../../models/cartItem';
-import { total } from '../store/items.action';
-import { ItemsState } from '../store/items.reducer';
+import { total } from '../../store/items.action';
+import { ItemsState } from '../../store/items.reducer';
 import { SharingDataService } from './../../services/sharing-data.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class CartComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.store.dispatch(total());
+		if (this.total == 0) this.store.dispatch(total());
 	}
 
 	onDeleteCart(id: number) {
